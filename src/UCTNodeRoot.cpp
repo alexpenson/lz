@@ -303,7 +303,7 @@ float adjust_komi(GameState& root_state, float root_eval, float target_wr, bool 
         else {
             shift = inv_wr(root_eval) - inv_wr(net_eval);
         }
-        Utils::myprintf("%f, %f, %f\n", root_eval, net_eval, shift); //
+        // Utils::myprintf("%f, %f, %f\n", root_eval, net_eval, shift); //
         if (opp && !cfg_pos && !cfg_neg) {
             if (root_eval < target_wr) {
                 adjust_up_komi(root_state, shift, target_wr, get_white_eval);
@@ -423,8 +423,8 @@ void UCTNode::prepare_root_node(Network & network, int color, // redundant argum
     search->sym_states[0].assign(cfg_num_threads, {});
     search->sym_states[1].assign(cfg_num_threads, {});
 
-    Utils::myprintf("black positions: %d\n", ss[0].size());
-    Utils::myprintf("white positions: %d\n", ss[1].size());
+    // Utils::myprintf("black positions: %d\n", ss[0].size());
+    // Utils::myprintf("white positions: %d\n", ss[1].size());
 
     if (cfg_dyn_komi) {
         if (cfg_collect_during_search) {
@@ -456,9 +456,9 @@ void UCTNode::prepare_root_node(Network & network, int color, // redundant argum
                     for (auto j = 0; j < ss[i].size(); j++) { ss[i][j]->diff = abs(ss[i][j]->winrate - colored_root_eval); }
                 }
             }
-            Utils::myprintf("deleting non-descendents\n");
-            Utils::myprintf("black positions: %d\n", ss[0].size());
-            Utils::myprintf("white positions: %d\n", ss[1].size());
+            // Utils::myprintf("deleting non-descendents\n");
+            // Utils::myprintf("black positions: %d\n", ss[0].size());
+            // Utils::myprintf("white positions: %d\n", ss[1].size());
         }
 
         bool to_adjust = false;
@@ -472,9 +472,9 @@ void UCTNode::prepare_root_node(Network & network, int color, // redundant argum
                     return sym_state1->diff < sym_state2->diff; });
                 ss[i].resize(num_positions);
             }
-            Utils::myprintf("keeping %f%% closest evals\n", cfg_adj_pct);
-            Utils::myprintf("black positions: %d\n", ss[0].size());
-            Utils::myprintf("white positions: %d\n", ss[1].size());
+            // Utils::myprintf("keeping %f%% closest evals\n", cfg_adj_pct);
+            // Utils::myprintf("black positions: %d\n", ss[0].size());
+            // Utils::myprintf("white positions: %d\n", ss[1].size());
         }
 
         if (!cfg_collect_during_search || to_adjust) {
@@ -530,12 +530,12 @@ void UCTNode::prepare_root_node(Network & network, int color, // redundant argum
         }
         search->sym_states[0].assign(cfg_num_threads, {});
         search->sym_states[1].assign(cfg_num_threads, {});
-        Utils::myprintf("NN eval=%f\n", root_eval);
-        Utils::myprintf("komi=%f\n", root_state.m_stm_komi);
-        Utils::myprintf("opp_komi=%f\n", root_state.m_opp_komi);
+        // Utils::myprintf("NN eval=%f\n", root_eval);
+        // Utils::myprintf("komi=%f\n", root_state.m_stm_komi);
+        // Utils::myprintf("opp_komi=%f\n", root_state.m_opp_komi);
     }
     else {
-        Utils::myprintf("NN eval=%f\n", root_eval);
+        // Utils::myprintf("NN eval=%f\n", root_eval);
     }
     search->collecting = false;
 
